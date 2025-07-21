@@ -27,17 +27,18 @@ def is_payment_received(start_time):
         # 🔐 Load token JSON from environment
         token_json_str = os.getenv("TOKEN_JSON")
         if not token_json_str:
-            print("❌ TOKEN_JSON environment variable not found!")
             raise Exception("❌ TOKEN_JSON environment variable not found!")
+        token_data = json.loads(token_json_str)
+        with open("token.json", "w") as f:
+            json.dump(token_data, f)
 
-        # 📝 Save token.json to disk (used by Google client)
-        try:
-            token_data = json.loads(token_json_str)
-            with open("token.json", "w") as f:
-                json.dump(token_data, f)
-        except Exception as e:
-            print("❌ Failed to parse or write token JSON:", str(e))
-            raise
+        # 🔐 Load credentials JSON from environment
+        credentials_json_str = os.getenv("CREDENTIALS_JSON")
+        if not credentials_json_str:
+            raise Exception("❌ CREDENTIALS_JSON environment variable not found!")
+        credentials_data = json.loads(credentials_json_str)
+        with open("credentials.json", "w") as f:
+            json.dump(credentials_data, f)
 
         # 🔑 Build Gmail service
         creds = Credentials.from_authorized_user_file("token.json", SCOPES)
@@ -84,4 +85,6 @@ def is_payment_received(start_time):
     except HttpError as error:
         print(f"❌ Gmail API Error: {error}")
         return False
-
+    except Exception as e:
+        print(str(e))
+        return False
