@@ -27,19 +27,13 @@ def is_payment_received(start_time):
         adjusted_start = start_time - timedelta(seconds=3)
 
 
-        if not os.path.exists("token.json"):
-            token_str = os.getenv("TOKEN_JSON")
-    
-            if token_str:
-                try:
-                    with open("token.json", "w") as f:
-                        json.dump(json.loads(token_str), f)
-                    print("✅ token.json successfully written from environment secret")
-                except Exception as e:
-                    print("❌ Failed to write token.json:", str(e))
-            else:
-                print("❌ TOKEN_JSON environment variable not found!")
+        token_json = os.getenv("TOKEN_JSON")
+        if token_json is None:
+            raise Exception("❌ TOKEN_JSON environment variable not found!")
 
+        # Write it back to token.json for libraries to use
+        with open("token.json", "w") as f:
+            json.dump(json.loads(token_json), f)
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
         service = build('gmail', 'v1', credentials=creds)
 
