@@ -62,7 +62,3 @@ def form():
 
 if __name__ == "__main__":
     app.run(debug=True)
-<<<<<<< HEAD
-
-=======
->>>>>>> c2afe95 (Save local changes before rebase)
