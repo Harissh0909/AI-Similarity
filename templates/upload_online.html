@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .upload-container {
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #0d6efd;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upload-container">
+        <h3 class="upload-title">Submit Document for Checking</h3>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">Choose your document</label>
+                <input type="file" class="form-control" id="file" name="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload & Submit</button>
+        </form>
+        <div class="footer-text">
+            Your file will be processed automatically. Please be patient.
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional for animations etc) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
