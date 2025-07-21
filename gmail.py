@@ -5,6 +5,8 @@ from datetime import datetime, timezone, timedelta
 import re
 import base64
 import email
+import os
+import json
 
 # Gmail API read-only scope
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
@@ -23,6 +25,15 @@ def is_payment_received(start_time):
 
         # ✅ Add 3-second grace period buffer to start_time
         adjusted_start = start_time - timedelta(seconds=3)
+
+
+# ✅ Write token.json from environment variable if it doesn't exist
+        if not os.path.exists("token.json"):
+            token_str = os.getenv("TOKEN_JSON")
+            if not token_str:
+                raise Exception("TOKEN_JSON environment variable is missing!")
+            with open("token.json", "w") as f:
+                json.dump(json.loads(token_str), f)
 
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
         service = build('gmail', 'v1', credentials=creds)
