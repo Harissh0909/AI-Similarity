@@ -1,0 +1,29 @@
+name: Run Flask App with Gmail API
+
+on:
+  push:
+    branches: [ main ]  # or your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Flask app (example purpose)
+      run: |
+        echo "Running Flask app for testing..."
+        python main.py
+      env:
+        TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
