@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from email.mime.text import MIMEText
 import base64
 from googleapiclient.discovery import build
@@ -48,7 +47,7 @@ Support Team
 # 🧪 Example usage (can be removed if importing from main.py)
 if __name__ == "__main__":
     send_code_to_user("MrA", "0177485335", "ehekekek@gmail.com", "TWW67")
-=======
+
 from email.mime.text import MIMEText
 import base64
 from googleapiclient.discovery import build
@@ -98,4 +97,3 @@ Support Team
 # 🧪 Example usage (can be removed if importing from main.py)
 if __name__ == "__main__":
     send_code_to_user("MrA", "0177485335", "ehekekek@gmail.com", "TWW67")
->>>>>>> c2afe95 (Save local changes before rebase)
