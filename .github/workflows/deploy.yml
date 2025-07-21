@@ -1,3 +1,4 @@
 env:
   TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
+  CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
 
