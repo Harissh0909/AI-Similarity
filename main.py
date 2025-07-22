@@ -126,9 +126,14 @@ def upload_file():
 # ---------------------------- SELENIUM FUNCTION ---------------------------- #
 def auto_submit(filepath):
     options = Options()
+    options.add_argument("--headless=new")  # 'new' headless mode is more stable
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--headless")  # Optional: run without opening browser window
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--remote-debugging-port=9222")
+    options.add_argument("--window-size=1920x1080")
+
     service = Service()
     driver = webdriver.Chrome(service=service, options=options)
     wait = WebDriverWait(driver, 20)
