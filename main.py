@@ -136,7 +136,22 @@ def auto_submit(filepath):
 
     service = Service()
     driver = webdriver.Chrome(service=service, options=options)
-    wait = WebDriverWait(driver, 20)
+
+    # Setup Chrome options
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+
+    # Use a unique user data directory each time (this fixes Render conflicts)
+    random_profile = f"/tmp/profile_{uuid4()}"
+    options.add_argument(f"--user-data-dir={random_profile}")
+
+    # Setup Chrome driver path
+    service = Service("/usr/bin/chromedriver")  # adjust this path if needed
+    driver = webdriver.Chrome(service=service, options=options)
+    
+    wait = WebDriverWait(driver, 10)
 
     try:
         driver.get("https://myturnitin.report/accounts/login/")
